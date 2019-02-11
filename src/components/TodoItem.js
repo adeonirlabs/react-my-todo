@@ -5,7 +5,7 @@ import trashIcon from '../assets/trash-icon.svg'
 
 const Container = styled.div`
   align-items: center;
-  background-color: #ecf0f1;
+  background-color: ${props => (props.checked ? '#ecf0f199' : '#ecf0f1')};
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -15,6 +15,9 @@ const Container = styled.div`
 `
 
 const CheckBox = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 1;
   padding-left: 20px;
   position: relative;
 `
@@ -33,12 +36,12 @@ const CheckMark = styled.span`
   height: 20px;
   left: 0;
   position: absolute;
-  top: 0;
   width: 20px;
 `
 
 const Text = styled.span`
   color: ${props => (props.checked ? '#b2bec3' : '#636e72')};
+  padding: 5px;
   position: relative;
   text-decoration: ${props => (props.checked ? 'line-through' : '')};
   top: 1px;
@@ -50,15 +53,11 @@ const DeleteButton = styled.span`
   top: 2px;
 `
 
-class TodoItems extends Component {
-  state = {
-    edit: true
-  }
-
+class TodoItem extends Component {
   render() {
-    const { entries, deleteItem, markItem } = this.props
+    const { entries, markItem, deleteItem } = this.props
     return entries.map(item => (
-      <Container key={item.id}>
+      <Container key={item.id} checked={item.done}>
         <CheckBox>
           <CheckInput
             type="checkbox"
@@ -89,4 +88,4 @@ class TodoItems extends Component {
   }
 }
 
-export default TodoItems
+export default TodoItem

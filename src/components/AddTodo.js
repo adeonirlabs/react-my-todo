@@ -51,7 +51,7 @@ class AddTodo extends Component {
 
   handleChange = e => {
     this.setState({
-      id: Date.now(),
+      id: Math.random(),
       text: e.target.value,
       done: false
     })
@@ -75,7 +75,7 @@ class AddTodo extends Component {
           type="text"
           onChange={this.handleChange}
           value={this.state.text}
-          placeholder="New task"
+          placeholder="Add new task"
         />
         <Button>
           <img src={plusIcon} alt="Add button" />

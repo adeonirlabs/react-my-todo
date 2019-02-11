@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import _ from 'lodash'
 
 import AddTodo from './AddTodo'
-import TodoItems from './TodoItems'
+import TodoItem from './TodoItem'
 
 const Container = styled.div`
   max-width: 600px;
@@ -15,16 +15,24 @@ const Title = styled.h1`
   text-align: center;
 `
 
+const Alert = styled.p`
+  text-align: center;
+  color: #636e72;
+`
+
 class TodoList extends Component {
   state = {
-    items: [{ id: Date.now(), text: 'Hello world', done: false }]
+    items: [
+      { id: Math.random(), text: 'Hello world', done: false },
+      { id: Math.random(), text: 'Make coffee', done: true }
+    ]
   }
 
   addItem = item => {
     let items = [...this.state.items, item]
 
     this.setState({
-      items
+      items: _.sortBy(items, ['done'])
     })
   }
 
@@ -55,13 +63,17 @@ class TodoList extends Component {
   render() {
     return (
       <Container>
-        <Title>React ToDo</Title>
+        <Title>My React Todo</Title>
         <AddTodo addItem={this.addItem} />
-        <TodoItems
-          entries={this.state.items}
-          deleteItem={this.deleteItem}
-          markItem={this.markItem}
-        />
+        {this.state.items.length === 0 ? (
+          <Alert>You have no todo's left!</Alert>
+        ) : (
+          <TodoItem
+            entries={this.state.items}
+            markItem={this.markItem}
+            deleteItem={this.deleteItem}
+          />
+        )}
       </Container>
     )
   }
