@@ -2,28 +2,33 @@ import React, { Component } from 'react'
 
 class AddTodo extends Component {
   state = {
-    content: '',
+    text: ''
   }
 
   handleChange = e => {
     this.setState({
-      content: e.target.value,
+      id: Date.now(),
+      text: e.target.value,
+      done: false
     })
   }
 
   handleSubmit = e => {
     e.preventDefault()
-    // this.props.AddTodo(this.state)
-    console.log(this.props.AddTodo())
+    this.props.addItem(this.state)
+    this.setState({ text: '' })
   }
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handleChange}/>
-        </form>
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          onChange={this.handleChange}
+          value={this.state.text}
+        />
+        <button>+</button>
+      </form>
     )
   }
 }

@@ -1,25 +1,55 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const TodoList = ({ todos, markTodo }) => {
-  const todoItems = todos.length
-  ? (
-    todos.map(todo => {
-      return (
-        <div key={todo.id}>
-          <span className={todo.active ? '' : 'active'}></span><span onClick={() => {markTodo(todo.id)}}>{todo.content}</span>
-        </div>
-      )
+import AddTodo from './AddTodo'
+import TodoItems from './TodoItems'
+
+class TodoList extends Component {
+  state = {
+    items: []
+  }
+
+  addItem = item => {
+    let items = [...this.state.items, item]
+
+    this.setState({
+      items
     })
-  )
-  : (
-    <p>You have no todo's left.</p>
-  )
+  }
 
-  return (
-    <div>
-      {todoItems}
-    </div>
-  )
+  markItem = id => {
+    this.setState(prevState => ({
+      items: prevState.items.map(item => {
+        if (item.id === id) {
+          return { ...item, done: !item.done }
+        }
+        return item
+      })
+    }))
+  }
+
+  deleteItem = id => {
+    const items = this.state.items.filter(item => {
+      return item.id !== id
+    })
+
+    this.setState({
+      items
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Todo</h1>
+        <AddTodo addItem={this.addItem} />
+        <TodoItems
+          entries={this.state.items}
+          deleteItem={this.deleteItem}
+          markItem={this.markItem}
+        />
+      </div>
+    )
+  }
 }
 
 export default TodoList
