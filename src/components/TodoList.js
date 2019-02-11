@@ -1,11 +1,23 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
+import _ from 'lodash'
 
 import AddTodo from './AddTodo'
 import TodoItems from './TodoItems'
 
+const Container = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+`
+
+const Title = styled.h1`
+  color: #636e72;
+  text-align: center;
+`
+
 class TodoList extends Component {
   state = {
-    items: []
+    items: [{ id: Date.now(), text: 'Hello world', done: false }]
   }
 
   addItem = item => {
@@ -18,12 +30,15 @@ class TodoList extends Component {
 
   markItem = id => {
     this.setState(prevState => ({
-      items: prevState.items.map(item => {
-        if (item.id === id) {
-          return { ...item, done: !item.done }
-        }
-        return item
-      })
+      items: _.sortBy(
+        prevState.items.map(item => {
+          if (item.id === id) {
+            return { ...item, done: !item.done }
+          }
+          return item
+        }),
+        ['done']
+      )
     }))
   }
 
@@ -39,15 +54,15 @@ class TodoList extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Todo</h1>
+      <Container>
+        <Title>React ToDo</Title>
         <AddTodo addItem={this.addItem} />
         <TodoItems
           entries={this.state.items}
           deleteItem={this.deleteItem}
           markItem={this.markItem}
         />
-      </div>
+      </Container>
     )
   }
 }
