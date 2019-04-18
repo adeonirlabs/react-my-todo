@@ -9,10 +9,13 @@ const Form = styled.form`
 `
 
 const Input = styled.input`
+  background-color: #fff;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   border: 0;
+  color: #636e72;
   flex: 1;
+  font-size: 16px;
   height: 46px;
   outline: 0;
   padding: 0 20px;

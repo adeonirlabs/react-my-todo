@@ -24,8 +24,7 @@ const CheckBox = styled.div`
 
 const CheckInput = styled.input`
   border: 0;
-  height: 0;
-  width: 0;
+  display: none;
 `
 
 const CheckMark = styled.span`
