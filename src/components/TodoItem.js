@@ -6,7 +6,7 @@ import trashIcon from '../assets/trash-icon.svg'
 const Container = styled.div`
   align-items: center;
   opacity: ${props => (props.checked ? 0.4 : 1)};
-  background-color: #ecf0f199;
+  background-color: #ecf0f1;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -30,7 +30,7 @@ const CheckInput = styled.input`
 `
 
 const CheckMark = styled.span`
-  background-color: ${props => (props.checked ? '#0984e3' : '#fff')};
+  background-color: ${props => (props.checked ? '#0984e3' : '#ecf0f1')};
   border-radius: 10px;
   border: 3px solid #0984e3;
   cursor: pointer;
