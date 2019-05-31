@@ -35,7 +35,12 @@ const CheckMark = styled.span`
   height: 20px;
   left: 0;
   position: absolute;
+  transition: opacity 0.2s ease;
   width: 20px;
+
+  :hover {
+    opacity: 0.6;
+  }
 `
 
 const Text = styled.span`
@@ -44,12 +49,19 @@ const Text = styled.span`
   position: relative;
   text-decoration: ${props => (props.checked ? 'line-through' : '')};
   top: 1px;
+  user-select: none;
 `
 
 const DeleteButton = styled.span`
   cursor: pointer;
+  opacity: 0.5;
   position: relative;
+  transition: opacity 0.2s ease;
   top: 2px;
+
+  :hover {
+    opacity: 1;
+  }
 `
 
 class TodoItem extends Component {

@@ -1,7 +1,16 @@
 import React from 'react'
 
+import GlobalStyled from './styles/global'
+
 import TodoList from './components/TodoList'
 
-const App = () => <TodoList />
+function App() {
+  return (
+    <>
+      <GlobalStyled />
+      <TodoList />
+    </>
+  )
+}
 
 export default App

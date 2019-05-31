@@ -63,7 +63,7 @@ class TodoList extends Component {
   render() {
     return (
       <Container>
-        <Title>My React Todo</Title>
+        <Title>React My Todo</Title>
         <AddTodo addItem={this.addItem} />
         {this.state.items.length === 0 ? (
           <Alert>You have no todo's left!</Alert>
