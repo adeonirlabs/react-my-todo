@@ -5,13 +5,15 @@ import trashIcon from '../assets/trash-icon.svg'
 
 const Container = styled.div`
   align-items: center;
-  background-color: ${props => (props.checked ? '#ecf0f199' : '#ecf0f1')};
+  opacity: ${props => (props.checked ? 0.4 : 1)};
+  background-color: #ecf0f199;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
   height: 46px;
   margin-bottom: 10px;
   padding: 0 20px;
+  transition: all 0.2s ease;
 `
 
 const CheckBox = styled.div`
@@ -35,7 +37,7 @@ const CheckMark = styled.span`
   height: 20px;
   left: 0;
   position: absolute;
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
   width: 20px;
 
   :hover {
@@ -44,7 +46,7 @@ const CheckMark = styled.span`
 `
 
 const Text = styled.span`
-  color: ${props => (props.checked ? '#b2bec3' : '#636e72')};
+  color: #636e72;
   padding: 5px;
   position: relative;
   text-decoration: ${props => (props.checked ? 'line-through' : '')};
@@ -56,7 +58,7 @@ const DeleteButton = styled.span`
   cursor: pointer;
   opacity: 0.5;
   position: relative;
-  transition: opacity 0.2s ease;
+  transition: all 0.2s ease;
   top: 2px;
 
   :hover {
